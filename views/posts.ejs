@@ -1,5 +1,6 @@
 <%- include('lout/head') %>
 <%- include('lout/nav') %>
+<div class="container">
 <div id="posts">
     <% for (let i=0;i<data.length;i++) {%>
         <div class="card" style="width: 18rem;">
@@ -14,5 +15,6 @@
             </div>
           </div>
     <% } %>
+</div>
 </div>
 <%- include('lout/jss') %>

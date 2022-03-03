@@ -23,13 +23,21 @@ app.get('/new', (req, res) => {
 });
 app.post('/post',(req,res) => {
     console.log(req.body);
-    bp.create({t:req.body.title,b:req.body.textbody,u:req.body.urls},(err,blpo)=>{console.log(err,blpo)})
+    url=req.body.urls;
+    if(url.indexOf('https://')==-1){
+        url='https://'+url;
+    }
+    bp.create({t:req.body.title,b:req.body.textbody,u:url},(err,blpo)=>{console.log(err,blpo)})
     res.redirect('/')
 });
 app.post('/del',(req,res) => {
     console.log(req.body);
     bp.findByIdAndRemove(req.body.id,(err,blpo)=>{console.log(err,blpo)})
     res.redirect('/')
+});
+// 404 page
+app.use((req, res) => {
+    res.status(404).render('404')
 });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

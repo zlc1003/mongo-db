@@ -1,21 +1,25 @@
 <%- include('lout/head') %>
-<%- include('lout/nav') %>
-<div class="container">
-<form action="/post" method="POST">
-    <label class="col-sm-2 col-form-label">title</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="staticEmail" name="title">
+  <%- include('lout/nav') %>
+    <div class="container">
+      <form action="/post" method="POST">
+        <label class="col-sm-2 col-form-label">title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="staticEmail" name="title">
+        </div>
+        <label class="col-sm-2 col-form-label">body</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="staticEmail" name="textbody">
+        </div>
+        <label class="col-sm-2 col-form-label">url</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="staticEmail" name="urls">
+        </div>
+        <label class="col-sm-2 col-form-label">paragraph</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="moreinfo"></textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="submit" />
+      </form>
     </div>
-    <label class="col-sm-2 col-form-label">body</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control" id="staticEmail" name="textbody">
-      </div>
-    <label class="col-sm-2 col-form-label">url</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control" id="staticEmail" name="urls">
-      </div>
-    <input class="btn btn-primary" type="submit" value="submit" />
-</form>
-</div>
 <%- include('lout/jss') %>
 <!-- aaaa -->

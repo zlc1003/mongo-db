@@ -108,7 +108,7 @@ app.get('/register', (req, res) => {
 })
 app.get('/logout', (req, res) => {
     res.clearCookie('userid')
-    await req.session.destroy(
+    req.session.destroy(
         function (err) {
             if (err) {
                 throw err

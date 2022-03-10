@@ -71,7 +71,7 @@ app.post('/login', (req, res) => {
             bcrypt.compare(req.body.pwd, data.pwd, function (err, result) {
                 if (err) throw err
                 if (result) {
-                    req.session.user = data.name
+                    req.session.userid = data._id
                     res.redirect('/posts')
                 }
                 else {
@@ -107,6 +107,7 @@ app.get('/register', (req, res) => {
     res.render('register', { data: null })
 })
 app.get('/logout', (req, res) => {
+    res.clearCookie('userid')
     await req.session.destroy(
         function (err) {
             if (err) {

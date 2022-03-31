@@ -1,6 +1,5 @@
 /* ---------------------------------password---------------------------- */
 var NEWS_PAPER_ADMIN_PASSW = "doyouknow-west-bay-news-paper-admin-password"
-var PORT = 80
 /* --------------------------------------------------------------------- */
 
 const db = require('mongoose')
@@ -10,7 +9,7 @@ const express = require('express')
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const app = express()
-const port = PORT
+const port = process.env.PORT || 3000
 
 bcrypt.hash('123456', 10, function (err, hash) {
     if (err) {

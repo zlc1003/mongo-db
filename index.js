@@ -6,17 +6,9 @@ const db = require('mongoose')
 const bodyParser = require("body-parser");
 const bp = require('./models/m')
 const express = require('express')
-const session = require('express-session');
-const bcrypt = require('bcrypt');
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 80
 
-bcrypt.hash('123456', 10, function (err, hash) {
-    if (err) {
-        throw err;
-    }
-    console.log(hash)
-});
 var css = `
 .bb {
     font-weight: bold;
@@ -37,12 +29,6 @@ body {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs')
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}))
 db.connect("mongodb+srv://lucas:zlc20100303@cluster0.xf2ly.mongodb.net/news_paper?retryWrites=true&w=majority", { useNewUrlParser: true })
 //aasasd
 app.get('/post/:id', (req, res) => {

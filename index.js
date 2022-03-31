@@ -49,6 +49,16 @@ app.get('/post/:id', (req, res) => {
     })
 })
 
+app.post('/adminlogin', (req, res) => {
+    if (req.body.pws == NEWS_PAPER_ADMIN_PASSW) {
+        res.render('admin')
+    }
+})
+
+app.get('/admin', (req, res) => {
+    res.render('adminlogin')
+})
+
 app.get('/', (req, res) => {
     res.redirect('/posts')
 });

@@ -1,5 +1,6 @@
 /* ---------------------------------password---------------------------- */
 var NEWS_PAPER_ADMIN_PASSW = "doyouknow-west-bay-news-paper-admin-password"
+var PORT = 80
 /* --------------------------------------------------------------------- */
 
 const db = require('mongoose')
@@ -9,7 +10,8 @@ const express = require('express')
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const app = express()
-const port = 60000
+const port = PORT
+
 bcrypt.hash('123456', 10, function (err, hash) {
     if (err) {
         throw err;
@@ -22,6 +24,15 @@ var css = `
 }
 .hide {
     display: none;
+}
+body {
+    background-color: #333333;
+}
+.grey {
+    background-color: #333333;
+}
+.white_text {
+    color: white;
 }
 `
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,7 +49,7 @@ db.connect("mongodb+srv://lucas:zlc20100303@cluster0.xf2ly.mongodb.net/news_pape
 app.get('/post/:id', (req, res) => {
     console.log(req.params.id)
     bp.post.findById(req.params.id, (err, data) => {
-        if (err) throw err
+        if (err) res.render('nonefind', { data: null })
         console.log(data)
         if (data == null || data == undefined) {
             res.render('nonefind', { data: null })
@@ -50,8 +61,15 @@ app.get('/post/:id', (req, res) => {
 })
 
 app.post('/adminlogin', (req, res) => {
-    if (req.body.pws == NEWS_PAPER_ADMIN_PASSW) {
-        res.render('admin')
+    if (req.body.pwd == NEWS_PAPER_ADMIN_PASSW) {
+        // res.render('admin')
+        bp.post.find({}, (err, data) => {
+            if (err) { throw err }
+            res.render('admin', { data: data })
+        });
+    }
+    else {
+        res.render('404', { data: null })
     }
 })
 
@@ -66,7 +84,7 @@ app.get('/', (req, res) => {
 app.get('/posts', (req, res) => {
     bp.post.find({}, (err, data) => {
         if (err) { throw err }
-        res.render('posts', { data: data })
+        res.render('posts', { data: data})
     });
 });
 
